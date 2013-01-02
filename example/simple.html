@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Simple</title>
+  <style>
+    body { margin: 30px; }
+  </style>
+</head>
+<body>
+  <div id="container"></div>
+  <script src="js/jquery.js"></script>
+  <script src="js/notpl.min.js"></script>
+  <script>
+    $(function () {
+      var container = $("#container").noTpl([
+        ['h1', 'Hello world !', {"title": 'A stupid title.'}],
+        ['p', 'This is a example.', null, function(p) {
+          p.click(function() {
+            p.css('color', 'green');
+          });
+        }],
+        ['p']
+      ]);
+
+      var button = $().noTpl([['button', 'Click !']]);
+
+      button.click(function() {
+        container.find('p').noTpl([['strong', ' Done !']]);
+      });
+
+      container.append(button);
+    });
+  </script>
+</body>
+</html>
