@@ -1,0 +1,15 @@
+{
+    "name": "pokap/notpl",
+    "description": "Fast template engine without template",
+    "keywords": ["notpl", "js"],
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Florent Denis",
+            "email": "florentdenisp@gmail.com"
+        }
+    ],
+    "require": {
+
+    }
+}
