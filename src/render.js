@@ -7,7 +7,9 @@
  * file that was distributed with this source code.
  */
 
-!function ($) {
+!function (window) {
+
+  var $ = window.jQuery;
 
   /**
    * @param {jQuery}                container Container html
@@ -35,7 +37,7 @@
    * @return {jQuery}
    */
   function createElement(config) {
-    var self = $(document.createElement(config[0]));
+    var self = $(window.document.createElement(config[0]));
 
     // container in container
     if (1 in config && !!config[1]) {
@@ -44,7 +46,7 @@
       }
       // is array
       else if ($.isArray(config[1])) {
-        NoTpl(self, config[1]);
+        window.noTpl(self, config[1]);
       }
       else if ($.isFunction(config[1])) {
         config[1](self);
@@ -71,12 +73,12 @@
    *
    * @return {jQuery}
    */
-  $.fn.noTpl = function (configs) {
-    if (!this.length) {
+  window.noTpl = function (container, configs) {
+    if (!container || !container.length) {
       return createElement(configs[0]);
     }
 
-    this.each(function () {
+    container.each(function () {
       var $this = $(this);
 
       for (var i = 0; i < configs.length; i++) {
@@ -84,7 +86,18 @@
       }
     });
 
-    return this;
+    return container;
   };
 
-}(window.jQuery);
+  /**
+   * &Alias window.noTpl
+   *
+   * @param {Array} configs
+   *
+   * @return {jQuery}
+   */
+  $.fn.noTpl = function (configs) {
+    return window.noTpl(this, configs);
+  };
+
+}(window);

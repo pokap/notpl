@@ -11,6 +11,7 @@
   <div id="container"></div>
   <script src="js/jquery.js"></script>
   <script src="js/notpl.min.js"></script>
+  <!--<script src="../src/render.js"></script>-->
   <script>
     $(function () {
       var container = $("#container").noTpl([
@@ -20,10 +21,11 @@
             p.css('color', 'green');
           });
         }],
-        ['p']
+        ['p', [['i', 'test']]]
       ]);
 
-      var button = $().noTpl([['button', 'Click !']]);
+      //var button = $().noTpl([['button', 'Click !']]);
+      var button = noTpl(null, [['button', 'Click !']]);
 
       button.click(function() {
         container.find('p').noTpl([['strong', ' Done !']]);
